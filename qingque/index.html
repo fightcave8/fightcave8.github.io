@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="青雀 - 原神手游角色图鉴与攻略。详细介绍青雀的命之座、天赋技能、圣遗物推荐、武器搭配及配队思路，提供详细数据分析与实战技巧。">
+    <meta name="keywords" content="青雀, 原神, 原神攻略, 原神角色, 青雀攻略, 雷神队, 原神圣遗物">
+    <title>青雀-原神角色图鉴与实战攻略指南</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #4c1d95;
+            --secondary-color: #a78bfa;
+            --accent-color: #fbbf24;
+            --text-main: #1f2937;
+            --text-light: #6b7280;
+            --bg-body: #f3f4f6;
+            --bg-card: #ffffff;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--bg-card);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-main);
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Character Profile Section */
+        .profile-section {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .character-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .char-img-placeholder {
+            width: 100%;
+            height: 400px;
+            background-color: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .char-img-placeholder::after {
+            content: "青雀形象示意";
+            position: absolute;
+            color: #9ca3af;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .char-info {
+            padding: 30px;
+        }
+
+        .char-name {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .char-title {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .element-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .element-pyro { background: #fee2e2; color: #ef4444; }
+        .element-anemo { background: #d1fae5; color: #10b981; }
+        .element-cryo { background: #e0f2fe; color: #0ea5e9; }
+        .element-electro { background: #e0e7ff; color: #6366f1; }
+        .element-geo { background: #fef3c7; color: #d97706; }
+        .element-hydro { background: #bae6fd; color: #0284c7; }
+        .element-physical { background: #f3f4f6; color: #4b5563; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .stat-item h4 {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Content Layout */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        /* Article */
+        .article-content {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--bg-body);
+            color: var(--text-main);
+        }
+
+        .intro-text {
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .section-block {
+            margin-bottom: 30px;
+        }
+
+        .section-block h3 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .skill-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 15px;
+            transition: transform 0.2s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--secondary-color);
+        }
+
+        .skill-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .skill-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar-widget {
+            background: var(--bg-card);
+            padding: 25px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .widget-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .relic-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .relic-list li:last-child {
+            border-bottom: none;
+        }
+
+        .relic-name {
+            font-weight: 500;
+        }
+
+        .relic-score {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Build Card */
+        .build-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .build-item {
+            text-align: center;
+        }
+
+        .build-icon {
+            width: 60px;
+            height: 60px;
+            background: #f3f4f6;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .build-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* FAQ */
+        .faq-item {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 15px 20px;
+            background: #f9fafb;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 15px 20px 15px;
+            max-height: 200px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        /* Footer */
+        footer {
+            background: #1f2937;
+            color: #d1d5db;
+            padding: 40px 0;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            margin: 0 10px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .profile-section {
+                grid-template-columns: 1fr;
+            }
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-wrapper {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 0;
+                gap: 15px;
+            }
+            nav ul {
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+            .article-content, .sidebar-widget {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <span>青雀</span> 攻略站
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#">角色图鉴</a></li>
+                    <li><a href="#">圣遗物搭配</a></li>
+                    <li><a href="#">配队思路</a></li>
+                    <li><a href="#">常见问题</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>青雀</h1>
+            <p>「雀之厅」的雀士，以极低的代价换取巨大的收益。她是原神中独一无二的四星雷系副C，利用“摩拉”机制在后台提供高额雷伤。</p>
+            <div class="hero-tags">
+                <span class="tag">雷属性</span>
+                <span class="tag">四星角色</span>
+                <span class="tag">后台挂雷</span>
+                <span class="tag">大世界探索</span>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <!-- 角色概览 -->
+        <section class="profile-section">
+            <div class="character-card">
+                <div class="char-img-placeholder"></div>
+                <div class="char-info">
+                    <h2 class="char-name">青雀</h2>
+                    <span class="char-title">“雀之厅”的雀士</span>
+                    <span class="element-badge element-electro">雷元素</span>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <h4>生命值 (EHP)</h4>
+                            <p>高</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>元素充能效率</h4>
+                            <p>中</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>攻击力 (ATK)</h4>
+                            <p>低</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>元素精通</h4>
+                            <p>中</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="char-details">
+                <h3 class="section-title">角色简介</h3>
+                <p class="intro-text">
+                    青雀是璃月“雀之厅”的雀士，一位追求“性价比”的优雅女性。在战斗中，她并不依赖高额的攻击力面板，而是通过独特的机制，在施放元素爆发后，在战斗中通过打出“摩拉”来获得高额的元素伤害加成。这使得她成为极其优秀的后台挂雷副C，能够与各种主C（如胡桃、雷电将军、迪卢克等）完美配合。
+                </p>
+                <div class="section-block">
+                    <h3>核心优势</h3>
+                    <ul style="margin-left: 20px; color: var(--text-light);">
+                        <li><strong>后台挂雷：</strong> 普通攻击和元素爆发均可造成雷元素伤害，且伤害频率较高，能快速触发蒸发、超载等反应。</li>
+                        <li><strong>低养成成本：</strong> 不需要堆砌过高的攻击力，对圣遗物和武器的要求相对宽松。</li>
+                        <li><strong>极高生存能力：</strong> 自身拥有高额的防御力转生命值加成，使其在深渊中拥有不错的生存能力。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="content-grid">
+            <!-- 左侧主要内容 -->
+            <article class="article-content">
+                <h2 class="section-title">技能机制详解</h2>
+                
+                <div class="section-block">
+                    <h3>普通攻击 · 雀之厅</h3>
+                    <p class="intro-text">青雀的普通攻击为<strong>五段攻击</strong>。普攻本身伤害不高，但重点在于其<strong>第五段攻击</strong>。第五段攻击会生成“摩拉”，这些摩拉在一段时间内会为青雀提供攻击力加成，并提高雷元素伤害加成。虽然持续时间较短，但在高频次挂雷中非常关键。</p>
+                </div>
+
+                <div class="section-block">
+                    <h3>元素战技 · 摩拉机关术</h3>
+                    <p class="intro-text">青雀切换至<strong>雀士状态</strong>，普通攻击变为<strong>三段式</strong>攻击，且每次攻击都会造成雷元素伤害。该状态下的攻击<strong>必定触发雷元素附着</strong>，非常适合给主C挂雷。雀士状态持续约8秒，冷却时间较长（20秒），因此需要合理规划释放时机，通常在主C准备爆发时开启。</p>
+                    <div class="skill-list">
+                        <div class="skill-card">
+                            <span class="skill-name">第一段</span>
+                            <span class="skill-desc">快速突进，造成雷元素伤害。</span>
+                        </div>
+                        <div class="skill-card">
+                            <span class="skill-name">第二段</span>
+                            <span class="skill-desc">横扫，造成雷元素伤害。</span>
+                        </div>
+                        <div class="skill-card">
+                            <span class="skill-name">第三段</span>
+                            <span class="skill-desc">强力下劈，造成雷元素伤害并生成摩拉。</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-block">
+                    <h3>元素爆发 · 雀之牌局</h3>
+                    <p class="intro-text">青雀打出“雀之牌局”，对前方敌人造成雷元素伤害。此技能的核心机制在于<strong>生成“摩拉”</strong>。生成的“摩拉”会在场上停留约30秒，玩家通过攻击这些“摩拉”可以回复元素能量，并为青雀提供<strong>攻击力和雷伤加成</strong>。这是青雀输出的核心来源，也是她被称为“摩拉”角色的原因。</p>
+                </div>
+            </article>
+
+            <!-- 右侧侧边栏 -->
+            <aside class="sidebar">
+                <div class="sidebar-widget">
+                    <h4 class="widget-title">圣遗物推荐</h4>
+                    <ul class="relic-list">
+                        <li>
+                            <span class="relic-name">绝缘之旗印</span>
+                            <span class="relic-score">★★★★★</span>
+                        </li>
+                        <li>
+                            <span class="relic-name">流放者</span>
+                            <span class="relic-score">★★★★</span>
+                        </li>
+                        <li>
+                            <span class="relic-name">宗室之印</span>
+                            <span class="relic-score">★★★</span>
+                        </li>
+                        <li>
+                            <span class="relic-name">沉沦之心</span>
+                            <span class="relic-score">★★★</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h4 class="widget-title">武器推荐</h4>
+                    <div class="build-grid">
+                        <div class="build-item">
+                            <div class="build-icon">⚔️</div>
+                            <div class="build-label">渔获</div>
+                        </div>
+                        <div class="build-item">
+                            <div class="build-icon">🗡️</div>
+                            <div class="build-label">西风长枪</div>
+                        </div>
+                        <div class="build-item">
+                            <div class="build-icon">🛡️</div>
+                            <div class="build-label">黑缨枪</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h4 class="widget-title">配队思路</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 10px;">
+                        青雀非常适合与<strong>雷元素主C</strong>（如雷泽、刻晴）或<strong>火元素主C</strong>（如胡桃、迪卢克）组队。
+                    </p>
+                    <div style="background: #f3f4f6; padding: 10px; border-radius: 6px; font-size: 0.85rem;">
+                        <strong>推荐队伍：</strong><br>
+                        青雀 + 雷神 + 班尼特 + 疾影<br>
+                        青雀 + 胡桃 + 行秋 + 班尼特
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <section class="article-content" style="margin-top: 40px;">
+            <h2 class="section-title">常见问题 (FAQ)</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">青雀适合新手吗？</div>
+                <div class="faq-answer">
+                    非常适合。青雀是四星角色，获取难度低，且养成成本低，不需要极品圣遗物也能打出不错的伤害，非常适合新手体验后台挂雷机制。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">青雀需要堆攻击力吗？</div>
+                <div class="faq-answer">
+                    不需要。青雀的伤害主要来源于元素战技和元素爆发提供的加成，自身面板攻击力影响较小。优先堆叠元素充能效率，确保大招循环。
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">青雀和雷泽哪个更好？</div>
+                <div class="faq-answer">
+                    两者定位不同。雷泽是强力的站场主C，需要高攻击力；青雀是优秀的后台副C，能为雷泽提供稳定的雷元素附着和充能。两者可以组成雷泽+青雀的强力队伍。
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">关于我们</a>
+                <a href="#">免责声明</a>
+                <a href="#">联系方式</a>
+                <a href="#">网站地图</a>
+            </div>
+            <p>&copy; 2023 青雀攻略站. 本站内容仅供学习交流，原神为米哈游所有。</p>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的FAQ折叠交互
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // 关闭其他打开的项
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // 切换当前项
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
