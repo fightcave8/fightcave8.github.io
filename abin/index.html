@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="阿宾房东太太漫画在线阅读平台，提供最新章节、高清画质及正版授权支持。">
+    <meta name="keywords" content="阿宾,房东太太,阿宾房东太太漫画,在线阅读,漫画推荐">
+    <title>阿宾房东太太-热门漫画在线阅读与高清章节更新</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #ff6b6b;
+            --secondary-color: #ff8e8e;
+            --text-dark: #333333;
+            --text-gray: #666666;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --border-radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --container-width: 1200px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-inner {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--text-dark);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-dark);
+            position: relative;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -24px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-subscribe {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .btn-subscribe:hover {
+            background-color: #ff5252;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #fff0f0 0%, #ffe3e3 100%);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .hero h1 .highlight {
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            color: var(--text-gray);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* Main Layout */
+        .main-container {
+            max-width: var(--container-width);
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 30px;
+        }
+
+        /* Comic List */
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 6px;
+            height: 22px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .comic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .comic-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .comic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-cover {
+            width: 100%;
+            height: 240px;
+            background-color: #eee;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255, 107, 107, 0.9);
+            color: white;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        .card-info {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-meta {
+            font-size: 12px;
+            color: var(--text-gray);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-tags {
+            margin-top: 10px;
+            display: flex;
+            gap: 5px;
+        }
+
+        .mini-tag {
+            font-size: 10px;
+            background-color: #f0f0f0;
+            color: var(--text-gray);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        /* Sidebar */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar-box {
+            background: var(--white);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .ranking-list {
+            counter-reset: rank;
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .ranking-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .ranking-item::before {
+            counter-increment: rank;
+            content: counter(rank);
+            width: 24px;
+            height: 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .ranking-item:nth-child(1)::before {
+            background-color: #ff4757;
+        }
+
+        .ranking-item:nth-child(2)::before {
+            background-color: #ffa502;
+        }
+
+        .ranking-item:nth-child(3)::before {
+            background-color: #2ed573;
+        }
+
+        .rank-title {
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2d3436;
+            color: #dfe6e9;
+            padding: 60px 20px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #b2bec3;
+            font-size: 14px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px;
+            color: #636e72;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                flex-direction: column;
+                height: auto;
+                padding: 15px;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .comic-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .comic-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 40px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <span>阿宾</span>房东太太
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">章节目录</a></li>
+                    <li><a href="#">热门榜单</a></li>
+                    <li><a href="#">作品分类</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#" class="btn-subscribe">订阅更新</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>阿宾 <span class="highlight">房东太太</span>：都市情感与生活趣事的完美结合</h1>
+                <p>跟随阿宾的脚步，探索租客与房东之间发生的温馨、搞笑与感人故事。高清画质，每日更新，随时随地畅快阅读。</p>
+                <div class="hero-tags">
+                    <span class="tag">都市情感</span>
+                    <span class="tag">生活趣事</span>
+                    <span class="tag">治愈系</span>
+                    <span class="tag">连载中</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="main-container">
+            <!-- Left Content -->
+            <section class="content-area">
+                <div class="section-title">最新章节</div>
+                <div class="comic-grid">
+                    <!-- Comic Card 1 -->
+                    <article class="comic-card">
+                        <div class="card-cover">
+                            <span class="card-badge">热门</span>
+                            <img src="https://picsum.photos/seed/abbin1/300/400" alt="阿宾房东太太封面">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">第102章：意外的惊喜</h3>
+                            <div class="card-meta">
+                                <span>2023-10-24</span>
+                                <span>12.5万</span>
+                            </div>
+                            <div class="card-tags">
+                                <span class="mini-tag">剧情</span>
+                                <span class="mini-tag">甜蜜</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Comic Card 2 -->
+                    <article class="comic-card">
+                        <div class="card-cover">
+                            <img src="https://picsum.photos/seed/abbin2/300/400" alt="阿宾房东太太封面">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">第101章：周末的约会</h3>
+                            <div class="card-meta">
+                                <span>2023-10-22</span>
+                                <span>10.2万</span>
+                            </div>
+                            <div class="card-tags">
+                                <span class="mini-tag">恋爱</span>
+                                <span class="mini-tag">日常</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Comic Card 3 -->
+                    <article class="comic-card">
+                        <div class="card-cover">
+                            <span class="card-badge">更新</span>
+                            <img src="https://picsum.photos/seed/abbin3/300/400" alt="阿宾房东太太封面">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">第100章：初识</h3>
+                            <div class="card-meta">
+                                <span>2023-10-20</span>
+                                <span>8.9万</span>
+                            </div>
+                            <div class="card-tags">
+                                <span class="mini-tag">回忆</span>
+                                <span class="mini-tag">温馨</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Comic Card 4 -->
+                    <article class="comic-card">
+                        <div class="card-cover">
+                            <img src="https://picsum.photos/seed/abbin4/300/400" alt="阿宾房东太太封面">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">第99章：搬家</h3>
+                            <div class="card-meta">
+                                <span>2023-10-18</span>
+                                <span>7.4万</span>
+                            </div>
+                            <div class="card-tags">
+                                <span class="mini-tag">生活</span>
+                                <span class="mini-tag">搞笑</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Comic Card 5 -->
+                    <article class="comic-card">
+                        <div class="card-cover">
+                            <img src="https://picsum.photos/seed/abbin5/300/400" alt="阿宾房东太太封面">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">第98章：误会解除</h3>
+                            <div class="card-meta">
+                                <span>2023-10-15</span>
+                                <span>9.1万</span>
+                            </div>
+                            <div class="card-tags">
+                                <span class="mini-tag">情感</span>
+                                <span class="mini-tag">剧情</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Comic Card 6 -->
+                    <article class="comic-card">
+                        <div class="card-cover">
+                            <span class="card-badge">推荐</span>
+                            <img src="https://picsum.photos/seed/abbin6/300/400" alt="阿宾房东太太封面">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">第97章：深夜食堂</h3>
+                            <div class="card-meta">
+                                <span>2023-10-12</span>
+                                <span>6.8万</span>
+                            </div>
+                            <div class="card-tags">
+                                <span class="mini-tag">美食</span>
+                                <span class="mini-tag">治愈</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Sidebar -->
+            <aside>
+                <div class="sidebar-box">
+                    <div class="section-title">热门排行</div>
+                    <div class="ranking-list">
+                        <a href="#" class="ranking-item">
+                            <span class="rank-title">第102章：意外的惊喜</span>
+                        </a>
+                        <a href="#" class="ranking-item">
+                            <span class="rank-title">第101章：周末的约会</span>
+                        </a>
+                        <a href="#" class="ranking-item">
+                            <span class="rank-title">第99章：误会解除</span>
+                        </a>
+                        <a href="#" class="ranking-item">
+                            <span class="rank-title">第100章：初识</span>
+                        </a>
+                        <a href="#" class="ranking-item">
+                            <span class="rank-title">第98章：搬家</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="sidebar-box">
+                    <div class="section-title">作品标签</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <a href="#" class="tag">都市</a>
+                        <a href="#" class="tag">恋爱</a>
+                        <a href="#" class="tag">同居</a>
+                        <a href="#" class="tag">搞笑</a>
+                        <a href="#" class="tag">治愈</a>
+                        <a href="#" class="tag">情感</a>
+                        <a href="#" class="tag">生活</a>
+                    </div>
+                </div>
+
+                <div class="sidebar-box">
+                    <div class="section-title">阅读指南</div>
+                    <ul style="font-size: 13px; color: var(--text-gray); line-height: 2;">
+                        <li>• 所有内容仅供个人学习参考</li>
+                        <li>• 请支持正版作者创作</li>
+                        <li>• 本站为资源聚合展示平台</li>
+                        <li>• 如有侵权请联系删除</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>阿宾房东太太</h3>
+                <p style="font-size: 14px; color: #b2bec3; line-height: 1.8;">
+                    提供最优质的漫画阅读体验，收录各类热门连载作品。致力于为漫画爱好者打造一个舒适、快捷的阅读社区。
+                </p>
+            </div>
+            <div class="footer-col">
+                <h3>快速导航</h3>
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">章节列表</a></li>
+                    <li><a href="#">排行榜</a></li>
+                    <li><a href="#">关于我们</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>友情链接</h3>
+                <ul>
+                    <li><a href="#">漫画大全</a></li>
+                    <li><a href="#">二次元社区</a></li>
+                    <li><a href="#">作者专栏</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 阿宾房东太太漫画阅读平台. All Rights Reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
