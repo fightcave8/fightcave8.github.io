@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A站微博 - 欢迎访问AcFun弹幕视频网。这里汇集了二次元文化、游戏解说、搞笑视频及热门话题讨论，为您提供最新鲜的娱乐资讯与互动体验。">
+    <meta name="keywords" content="acfun微博,A站微博,AcFun,弹幕视频网,二次元,动漫,搞笑视频,游戏解说">
+    <title>A站微博-AcFun弹幕视频网：二次元文化与娱乐资讯的聚集地</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #fb7299;
+            --primary-hover: #e85c80;
+            --bg-color: #f5f6f7;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-sub: #999999;
+            --border-color: #e5e9ef;
+            --header-height: 60px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--card-bg);
+            height: var(--header-height);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-login {
+            padding: 8px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .btn-login:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 16px;
+            color: #2c3e50;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .search-input {
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: none;
+            width: 300px;
+            outline: none;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-search {
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 30px;
+        }
+
+        /* Content Section */
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title a {
+            font-size: 14px;
+            color: var(--text-sub);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .video-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .card-cover {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background-color: #eee;
+        }
+
+        .card-cover img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0,0,0,0.7);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .card-info {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-sub);
+        }
+
+        .author-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .sidebar-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .rank-list {
+            list-style: none;
+        }
+
+        .rank-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .rank-item:last-child {
+            border-bottom: none;
+        }
+
+        .rank-num {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ddd;
+            width: 25px;
+            text-align: center;
+        }
+
+        .rank-item:nth-child(1) .rank-num { color: #ff4757; }
+        .rank-item:nth-child(2) .rank-num { color: #ffa502; }
+        .rank-item:nth-child(3) .rank-num { color: #2ed573; }
+
+        .rank-info {
+            flex: 1;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        .rank-title {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .rank-play {
+            font-size: 12px;
+            color: var(--text-sub);
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background-color: #f0f2f5;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            color: #555;
+        }
+
+        .tag:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #fff;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--text-sub);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 12px;
+            color: var(--text-sub);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                display: none; /* Hide nav links on mobile for simplicity */
+            }
+
+            .header-container {
+                padding: 0 10px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+                <span>A站微博</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">热门推荐</a></li>
+                    <li><a href="#">分区浏览</a></li>
+                    <li><a href="#">排行榜</a></li>
+                    <li><a href="#">活动</a></li>
+                </ul>
+            </nav>
+            <div class="nav-right">
+                <a href="#" class="btn-login">登录 / 注册</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>发现更有趣的二次元世界</h1>
+            <p>AcFun弹幕视频网，汇聚海量动漫、游戏解说、搞笑视频与热门话题讨论。加入弹幕，让观点在屏幕上飞舞。</p>
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="搜索视频、UP主或话题...">
+                <button class="btn-search">搜索</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Main Content -->
+        <main>
+            <section>
+                <div class="section-title">
+                    <span>最新投稿</span>
+                    <a href="#">查看更多 &gt;</a>
+                </div>
+                <div class="video-grid">
+                    <!-- Video Item 1 -->
+                    <article class="video-card">
+                        <div class="card-cover">
+                            <img src="https://picsum.photos/seed/acfun1/400/225" alt="视频封面">
+                            <span class="card-badge">P1</span>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">【A站独家】2024年度最期待的动画番剧盘点，这些你一定不能错过！</h3>
+                            <div class="card-meta">
+                                <span><img src="https://picsum.photos/seed/u1/50/50" class="author-avatar" alt="UP主"> 动漫情报局</span>
+                                <span>12.5万次播放</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Video Item 2 -->
+                    <article class="video-card">
+                        <div class="card-cover">
+                            <img src="https://picsum.photos/seed/acfun2/400/225" alt="视频封面">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">【搞笑】当程序员试图用代码解决生活中的所有问题，结果...</h3>
+                            <div class="card-meta">
+                                <span><img src="https://picsum.photos/seed/u2/50/50" class="author-avatar" alt="UP主"> 程序员日常</span>
+                                <span>8.2万次播放</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Video Item 3 -->
+                    <article class="video-card">
+                        <div class="card-cover">
+                            <img src="https://picsum.photos/seed/acfun3/400/225" alt="视频封面">
+                            <span class="card-badge">P3</span>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">【实况】深夜食堂：在A站看弹幕是一种什么样的体验？</h3>
+                            <div class="card-meta">
+                                <span><img src="https://picsum.photos/seed/u3/50/50" class="author-avatar" alt="UP主"> 剧情解说员</span>
+                                <span>5.6万次播放</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Video Item 4 -->
+                    <article class="video-card">
+                        <div class="card-cover">
+                            <img src="https://picsum.photos/seed/acfun4/400/225" alt="视频封面">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">【硬核】深度解析：为什么现在的游戏越来越难了？</h3>
+                            <div class="card-meta">
+                                <span><img src="https://picsum.photos/seed/u4/50/50" class="author-avatar" alt="UP主"> 游戏观察家</span>
+                                <span>3.1万次播放</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section style="margin-top: 40px;">
+                <div class="section-title">
+                    <span>热门话题</span>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                    <a href="#" class="tag"># ACG次元壁 #</a>
+                    <a href="#" class="tag"># 游戏圈 #</a>
+                    <a href="#" class="tag"># 搞笑段子 #</a>
+                    <a href="#" class="tag"># 科技数码 #</a>
+                    <a href="#" class="tag"># 影视综 #</a>
+                    <a href="#" class="tag"># 音乐现场 #</a>
+                </div>
+            </section>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Hot Ranking -->
+            <div class="sidebar-card">
+                <div class="section-title">
+                    <span>全站热门</span>
+                </div>
+                <ul class="rank-list">
+                    <li class="rank-item">
+                        <span class="rank-num">1</span>
+                        <div class="rank-info">
+                            <span class="rank-title">【直播】A站春晚，笑点密集，不容错过！</span>
+                            <span class="rank-play">210万次播放</span>
+                        </div>
+                    </li>
+                    <li class="rank-item">
+                        <span class="rank-num">2</span>
+                        <div class="rank-info">
+                            <span class="rank-title">某知名UP主深夜发文：聊聊我做视频的初衷</span>
+                            <span class="rank-play">98万次播放</span>
+                        </div>
+                    </li>
+                    <li class="rank-item">
+                        <span class="rank-num">3</span>
+                        <div class="rank-info">
+                            <span class="rank-title">经典老番重制，画质提升带来的视觉震撼</span>
+                            <span class="rank-play">85万次播放</span>
+                        </div>
+                    </li>
+                    <li class="rank-item">
+                        <span class="rank-num">4</span>
+                        <div class="rank-info">
+                            <span class="rank-title">新手必看：如何快速找到自己喜欢的A站内容？</span>
+                            <span class="rank-play">45万次播放</span>
+                        </div>
+                    </li>
+                    <li class="rank-item">
+                        <span class="rank-num">5</span>
+                        <div class="rank-info">
+                            <span class="rank-title">这游戏操作太秀了，全程高能无尿点</span>
+                            <span class="rank-play">32万次播放</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- About Box -->
+            <div class="sidebar-card">
+                <div class="section-title">
+                    <span>关于A站微博</span>
+                </div>
+                <p style="font-size: 13px; color: #666; margin-bottom: 15px;">
+                    AcFun（A站）是中国领先的二次元文化社区，致力于为用户提供高质量的动画、漫画、游戏、娱乐资讯及互动服务。
+                </p>
+                <div class="tag-cloud">
+                    <a href="#" class="tag">弹幕文化</a>
+                    <a href="#" class="tag">同人创作</a>
+                    <a href="#" class="tag">直播互动</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>关于我们</h4>
+                <ul>
+                    <li><a href="#">公司简介</a></li>
+                    <li><a href="#">加入我们</a></li>
+                    <li><a href="#">联系方式</a></li>
+                    <li><a href="#">隐私政策</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>内容服务</h4>
+                <ul>
+                    <li><a href="#">视频投稿</a></li>
+                    <li><a href="#">专栏文章</a></li>
+                    <li><a href="#">社区公约</a></li>
+                    <li><a href="#">举报中心</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>合作伙伴</h4>
+                <ul>
+                    <li><a href="#">版权合作</a></li>
+                    <li><a href="#">广告投放</a></li>
+                    <li><a href="#">开发者接口</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>关注我们</h4>
+                <ul>
+                    <li><a href="#">新浪微博</a></li>
+                    <li><a href="#">微信公众号</a></li>
+                    <li><a href="#">Bilibili</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 AcFun 弹幕视频网 版权所有 | 京ICP备12345678号
+        </div>
+    </footer>
+
+</body>
+  </html>
